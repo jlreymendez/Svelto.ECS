@@ -233,6 +233,18 @@ namespace Svelto.ECS.Internal
             }
         }
 
+        public IBuffer<FasterDictionaryNode<uint>> GetKeys(out uint count)
+        {
+            if (_isUmanaged)
+            {
+                return this.implUnmgd.GetKeys(out count);
+            }
+            else
+            {
+                return this.implMgd.GetKeys(out count);
+            }
+        }
+
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public ref TValue GetDirectValueByRef(uint key)
         {
